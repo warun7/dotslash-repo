@@ -1,26 +1,12 @@
 # dotslash-repo
 
-### Requirements
-1. All submissions must contain a pitch deck explaining their idea
-2. All code must be well commented
-3. Teams must create a folder titled mid-hack in which all materials for the mid hack must be stored
-4. A citations.md file must be created in which all resources, code references etc. must be cited. Failure to do so may result in plagiarism being flagged.
-5. Teams must create a folder titled end-hack in which all the materials pertaining to the final submission must be stored along with the pitch deck explaining the project.
-
-### Suggestions
-
-1. Teams are suggested to keep their code well documented (with comments and docstrings). Furthermore, it is advisable to maintain a specific code convention throughout (file naming, functions or variable naming)
-2. Participants are encouraged to push commits to the repo regularly rather than a single large comit towards the end. This will enable to rule out plagiarisism detection.
-
-
-# dotslash-repo
-
 ## Welcome to the dotslash Hackathon Repository! 🚀
 
 ### Instructions:
 - **Fork this repository**: Only one member from each team must fork this repository to their own GitHub account.
 - **Commit directly to your fork**: All submissions, code, and documentation must be committed to your fork. This repository will serve as your primary workspace during the hackathon.
 
+- [Rulebook and Sponsor Problem Statements](https://tanmayrainanda.craft.me/dotslash-info-repo)
 ---
 
 ## Requirements
