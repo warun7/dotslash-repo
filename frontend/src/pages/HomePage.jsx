@@ -17,13 +17,14 @@ const HomePage = () => {
       const formData = new FormData();
       formData.append("image", file);
 
-      const response = await fetch("http://localhost:5000/api/detect", {
+      const response = await fetch("https://product-detection-73n9.onrender.com/api/detect", {
         method: "POST",
         body: formData,
       });
 
       if (!response.ok) {
-        throw new Error("Failed to process image");
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to process image");
       }
 
       const data = await response.json();
@@ -31,21 +32,10 @@ const HomePage = () => {
       setImage(data.processed_image);
     } catch (error) {
       console.error("Error processing image:", error);
+      setProducts([]);
     } finally {
       setIsProcessing(false);
     }
-
-    // // Simulate processing with dummy data
-    // setTimeout(() => {
-    //   setIsProcessing(false);
-    //   setProducts([
-    //     { name: "Coca-Cola Can", confidence: 0.95, category: "Beverages", price: "$1.99" },
-    //     { name: "Lay's Classic Chips", confidence: 0.88, category: "Snacks", price: "$3.49" },
-    //     { name: "Snickers Bar", confidence: 0.92, category: "Candy", price: "$0.99" },
-    //     { name: "Pepsi Bottle", confidence: 0.85, category: "Beverages", price: "$2.49" },
-    //     { name: "Doritos Nacho Cheese", confidence: 0.91, category: "Snacks", price: "$3.99" }
-    //   ]);
-    // }, 2000);
   };
 
   const handleRemoveImage = () => {
