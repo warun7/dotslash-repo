@@ -6,14 +6,15 @@ from utils.yolo_detector import YOLOv11Detector
 import base64
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {
-    "origins": [
-        "https://sprightly-melba-8083b3.netlify.app",
-        "http://localhost:5173"  # Keep local development working
-    ],
-    "methods": ["POST", "OPTIONS"],
-    "allow_headers": ["Content-Type"]
-}})
+
+# Configure CORS properly
+CORS(app, resources={
+    r"/*": {
+        "origins": ["https://sprightly-melba-8083b3.netlify.app", "http://localhost:5173"],
+        "methods": ["GET", "POST", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization", "Accept"],
+    }
+})
 
 UPLOAD_FOLDER = 'uploads'
 RESULTS_FOLDER = 'results'

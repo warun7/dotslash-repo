@@ -20,19 +20,25 @@ const HomePage = () => {
       const response = await fetch("https://product-detection-73n9.onrender.com/api/detect", {
         method: "POST",
         body: formData,
+        mode: 'cors',
+        headers: {}
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to process image");
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       const data = await response.json();
-      setProducts(data.detected_products);
+      if (data.error) {
+        throw new Error(data.error);
+      }
+      
+      setProducts(data.detected_products || []);
       setImage(data.processed_image);
     } catch (error) {
       console.error("Error processing image:", error);
       setProducts([]);
+      setImage(null);
     } finally {
       setIsProcessing(false);
     }
