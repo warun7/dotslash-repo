@@ -1,7 +1,7 @@
 import { Package } from 'lucide-react';
 
-export function ProductList({ products }) {
-  if (products.length === 0) return null;
+export function ProductList({ products = [] }) {
+  if (!products?.length) return null;
 
   return (
     <div className="w-full max-w-2xl mt-8">

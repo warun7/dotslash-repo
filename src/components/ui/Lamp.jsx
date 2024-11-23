@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "../../utils/cn";
 
@@ -75,4 +74,4 @@ export const LampContainer = ({ children, className }) => {
       </div>
     </div>
   );
-};
+}; 

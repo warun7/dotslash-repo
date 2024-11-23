@@ -16,12 +16,12 @@ const Hero = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const initialY = windowWidth < 768 ? 200 : 150;
-  const whileInViewY = windowWidth < 768 ? 350 : 50;
+  const initialY = windowWidth < 768 ? 500 : 150;
+  const whileInViewY = windowWidth < 768 ? 320 : 50;
 
   return (
-    <section className="relative min-h-screen pt-24">
-      <LampContainer>
+    <section className="relative min-h-[calc(100vh-4rem)]">
+      <LampContainer className="z-10">
         <motion.div
           initial={{ opacity: 0, y: initialY }}
           whileInView={{ opacity: 1, y: whileInViewY }}
