@@ -17,22 +17,24 @@ const HomePage = () => {
       const formData = new FormData();
       formData.append("image", file);
 
-      const response = await fetch("https://product-detection-73n9.onrender.com/api/detect", {
+      const response = await fetch("http://localhost:5000/api/detect", {
         method: "POST",
         body: formData,
-        mode: 'cors'
+        mode: "cors",
       });
 
       if (!response.ok) {
         const errorText = await response.text();
-        throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
+        throw new Error(
+          `HTTP error! status: ${response.status}, message: ${errorText}`
+        );
       }
 
       const data = await response.json();
       if (data.error) {
         throw new Error(data.error);
       }
-      
+
       setProducts(data.detected_products || []);
       setImage(data.processed_image);
     } catch (error) {
