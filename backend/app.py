@@ -7,14 +7,8 @@ import base64
 
 app = Flask(__name__)
 
-# Configure CORS properly
-CORS(app, resources={
-    r"/*": {
-        "origins": ["https://sprightly-melba-8083b3.netlify.app", "http://localhost:5173"],
-        "methods": ["GET", "POST", "OPTIONS"],
-        "allow_headers": ["Content-Type", "Authorization", "Accept"],
-    }
-})
+# Simple CORS configuration
+CORS(app)
 
 UPLOAD_FOLDER = 'uploads'
 RESULTS_FOLDER = 'results'
@@ -28,10 +22,13 @@ detector = YOLOv11Detector(
 
 @app.route('/api/detect', methods=['POST'])
 def detect_products():
+    print("Received request")  # Debug log
     if 'image' not in request.files:
+        print("No image in request")  # Debug log
         return jsonify({'error': 'No image provided'}), 400
         
     file = request.files['image']
+    print(f"Received file: {file.filename}")  # Debug log
     if file.filename == '':
         return jsonify({'error': 'No selected file'}), 400
         
@@ -63,6 +60,3 @@ def detect_products():
             os.remove(filepath)
         print(f"Error processing image: {str(e)}")
         return jsonify({'error': 'Failed to process image'}), 500
-
-if __name__ == '__main__':
-    app.run(debug=True) 

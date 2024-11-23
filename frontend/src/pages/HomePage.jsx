@@ -21,7 +21,9 @@ const HomePage = () => {
         method: "POST",
         body: formData,
         mode: 'cors',
-        headers: {}
+        headers: {
+          'Accept': '*/*',
+        }
       });
 
       if (!response.ok) {
