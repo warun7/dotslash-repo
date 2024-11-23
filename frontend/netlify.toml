@@ -11,6 +11,16 @@
   NODE_VERSION = "20"
 
 [[headers]]
-  for = "/*"
+  for = "/*.js"
     [headers.values]
     Content-Type = "text/javascript"
+
+[[headers]]
+  for = "/*.css"
+    [headers.values]
+    Content-Type = "text/css"
+
+[[headers]]
+  for = "/*.png"
+    [headers.values]
+    Content-Type = "image/png"
