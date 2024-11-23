@@ -62,7 +62,7 @@ const Hero = () => {
                 icon: <FaSyncAlt className="text-green-400" />,
               },
             ].map((feature, index) => (
-              <CardSpotlight key={index} className="bg-slate-900/50">
+              <CardSpotlight key={index} className="bg-black/40">
                 <div className="text-4xl">{feature.icon}</div>
                 <h3 className="text-xl font-semibold text-slate-200">
                   {feature.title}
