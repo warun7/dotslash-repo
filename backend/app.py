@@ -6,7 +6,7 @@ from utils.yolo_detector import YOLOv11Detector
 import base64
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 UPLOAD_FOLDER = 'uploads'
 RESULTS_FOLDER = 'results'
