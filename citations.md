@@ -14,5 +14,13 @@ npm install
 # Start the application
 npm run dev
 ```
+## Data Source: 
+
+SKU 110k : https://paperswithcode.com/dataset/sku110k
 
 # Model
+
+Ultralytics YOLO v11 nano: https://docs.ultralytics.com/datasets/detect/sku-110k/
+
+AI Tools: 
+We used claude.ai and ChatGPT to generate parts of our code
