@@ -32,5 +32,7 @@ python app.py
 # Tech Used
 - For frontend reactjs with tailwind was used
 - The backend runs using flask to make requests to the model and the Gemini API
+- The model utilizes YOLO v11n for nearly instant and fairly accurate object detection and cropping in the shelf image.
+- Gemini 1.5 flash with 8 billion parameters was used for quick item recognition with added benefits of formatting, filtering unique items, fuzzy identification and context awareness at a low cost both computationally and in terms of API cost.
   ![YOLO v11 stats](images/yolo11n.png)
   
