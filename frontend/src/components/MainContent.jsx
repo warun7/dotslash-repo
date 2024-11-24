@@ -1,4 +1,3 @@
-import React from "react";
 import { ImageUploader } from "./ImageUploader";
 import { ImagePreview } from "./ImagePreview";
 import { ProductList } from "./ProductList";
@@ -14,6 +13,13 @@ function MainContent({
 }) {
   const handleDeleteProduct = (indexToDelete) => {
     setProducts(products.filter((_, index) => index !== indexToDelete));
+  };
+
+  const handleDuplicateProduct = (index) => {
+    const newProducts = [...products];
+    const productToDuplicate = { ...newProducts[index] };
+    newProducts.splice(index + 1, 0, productToDuplicate);
+    setProducts(newProducts);
   };
 
   return (
@@ -45,7 +51,11 @@ function MainContent({
             />
           )}
 
-          <ProductList products={products} onDeleteProduct={handleDeleteProduct} />
+          <ProductList 
+            products={products} 
+            onDeleteProduct={handleDeleteProduct}
+            onDuplicateProduct={handleDuplicateProduct}
+          />
         </div>
       </div>
     </main>
