@@ -1,6 +1,6 @@
-import { Trash2 } from "lucide-react";
+import { Trash2, Copy } from "lucide-react";
 
-export function ProductList({ products = [], onDeleteProduct }) {
+export function ProductList({ products = [], onDeleteProduct, onDuplicateProduct }) {
   if (!products?.length) return null;
 
   // Initialize products with quantity = 1 if not set
@@ -54,6 +54,10 @@ export function ProductList({ products = [], onDeleteProduct }) {
     products.splice(indexToDelete, 1);
   };
 
+  const handleDuplicate = (index) => {
+    onDuplicateProduct(index);
+  };
+
   return (
     <div className="w-full max-w-2xl mt-8">
       <div className="flex justify-between items-center mb-4">
@@ -88,12 +92,20 @@ export function ProductList({ products = [], onDeleteProduct }) {
             className="flex items-center justify-between p-4 hover:bg-slate-800 transition-colors"
           >
             <div className="flex items-center space-x-3">
-              <button
-                onClick={() => onDeleteProduct(index)}
-                className="p-2 bg-red-500/10 hover:bg-red-500/20 rounded-lg transition-colors"
-              >
-                <Trash2 className="w-5 h-5 text-red-500" />
-              </button>
+              <div className="flex space-x-2">
+                <button
+                  onClick={() => onDeleteProduct(index)}
+                  className="p-2 bg-red-500/10 hover:bg-red-500/20 rounded-lg transition-colors"
+                >
+                  <Trash2 className="w-5 h-5 text-red-500" />
+                </button>
+                <button
+                  onClick={() => handleDuplicate(index)}
+                  className="p-2 bg-blue-500/10 hover:bg-blue-500/20 rounded-lg transition-colors"
+                >
+                  <Copy className="w-5 h-5 text-blue-500" />
+                </button>
+              </div>
               <span className="font-medium text-gray-200">{product.name}</span>
             </div>
             <div className="flex items-center space-x-4">
