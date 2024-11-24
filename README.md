@@ -6,10 +6,30 @@
   ![store 1](images/store_21_BB.jpg)
   ![store 2](images/store_6_BB.jpg)
   ![store 3](images/store_19_BB.jpg)
-- We then used OCR to decipher the text on the individual product images to identify them, using `opencv` and `easyocr`
+- After getting the bounding boxes on the products, we cropped them and fed the images to `GEMINI API` with propmts for it to identify the product in the image
+- Made calls to the model and the api using flask and the results are as follows: 
+![product detection on website](images/image.png)
 
-# OCR Results
+# Setting up Locally
+- Clone the repository
+```bash
+git clone https://github.com/
+cd cloned-repo/frontend
+npm install
+cd ..
+cd backend
+pip install -r requirements.txt
+```
+To run the `frontend` run this command in the frontend directory
+```bash
+npm run dev
+```
+To run the `backend` run this command in the backend directory
+```bash
+python app.py
+```
 
-![ocr image 1](<images/WhatsApp Image 2024-11-23 at 21.37.48_6e949558.jpg>)
-![ocr image 2](<images/WhatsApp Image 2024-11-23 at 21.38.14_cabe2e7a.jpg>)
-![ocr image 3](<images/WhatsApp Image 2024-11-23 at 21.38.23_a96b1102.jpg>)
+# Tech Used
+- For frontend reactjs with tailwind was used
+- The backend runs using flask to make requests to the model and the Gemini API
+- 
