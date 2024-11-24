@@ -8,7 +8,7 @@
   ![store 3](images/store_19_BB.jpg)
 - After getting the bounding boxes on the products, we cropped them and fed the images to `GEMINI API` with propmts for it to identify the product in the image
 - Made calls to the model and the api using flask and the results are as follows: 
-![product detection on website]()
+![product detection on website](images/image.png)
 
 # Setting up Locally
 - Clone the repository
