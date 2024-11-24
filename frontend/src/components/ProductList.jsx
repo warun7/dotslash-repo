@@ -60,14 +60,14 @@ export function ProductList({ products = [], onDeleteProduct, onDuplicateProduct
 
   return (
     <div className="w-full max-w-2xl mt-8">
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-4 gap-4">
         <h2 className="text-xl font-semibold text-gray-200">
           Detected Products ({products.length})
         </h2>
         {products.length > 0 && (
           <button
             onClick={handleExportCSV}
-            className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg flex items-center gap-2 transition-colors"
+            className="w-full sm:w-auto px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg flex items-center justify-center gap-2 transition-colors"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -89,9 +89,9 @@ export function ProductList({ products = [], onDeleteProduct, onDuplicateProduct
         {products.map((product, index) => (
           <div
             key={index}
-            className="flex items-center justify-between p-4 hover:bg-slate-800 transition-colors"
+            className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 hover:bg-slate-800 transition-colors gap-4"
           >
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-3 w-full sm:w-auto">
               <div className="flex space-x-2">
                 <button
                   onClick={() => onDeleteProduct(index)}
@@ -106,33 +106,33 @@ export function ProductList({ products = [], onDeleteProduct, onDuplicateProduct
                   <Copy className="w-5 h-5 text-blue-500" />
                 </button>
               </div>
-              <span className="font-medium text-gray-200">{product.name}</span>
+              <span className="font-medium text-gray-200 break-all">{product.name}</span>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 w-full sm:w-auto">
               {/* Number of items input */}
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-start sm:items-center w-full sm:w-auto">
                 <label className="text-xs text-gray-400 mb-1">Items</label>
                 <input
                   type="number"
                   min="0"
                   defaultValue={product.quantity}
                   onChange={(e) => handleQuantityChange(index, e.target.value)}
-                  className="w-20 px-3 py-1 bg-slate-800 border border-gray-700 rounded-lg text-gray-200 focus:outline-none focus:border-blue-500"
+                  className="w-full sm:w-20 px-3 py-1 bg-slate-800 border border-gray-700 rounded-lg text-gray-200 focus:outline-none focus:border-blue-500"
                   placeholder="Items"
                 />
               </div>
 
               {/* Amount input with units */}
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-start sm:items-center w-full sm:w-auto">
                 <label className="text-xs text-gray-400 mb-1">Amount</label>
-                <div className="flex">
+                <div className="flex w-full sm:w-auto">
                   <input
                     type="number"
                     min="0"
                     step="0.01"
                     defaultValue={product.amount || 0}
                     onChange={(e) => handleAmountChange(index, e.target.value)}
-                    className="w-24 px-3 py-1 bg-slate-800 border border-gray-700 rounded-l-lg text-gray-200 focus:outline-none focus:border-blue-500"
+                    className="w-full sm:w-24 px-3 py-1 bg-slate-800 border border-gray-700 rounded-l-lg text-gray-200 focus:outline-none focus:border-blue-500"
                     placeholder="Amount"
                   />
                   <select
