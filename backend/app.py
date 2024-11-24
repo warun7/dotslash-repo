@@ -10,7 +10,7 @@ from pathlib import Path
 import math
 import json
 import google.generativeai as genai
-
+#comment
 load_dotenv()
 
 app = Flask(__name__)
