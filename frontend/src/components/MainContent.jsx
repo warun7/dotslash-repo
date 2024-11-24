@@ -10,7 +10,12 @@ function MainContent({
   image,
   isProcessing,
   products,
+  setProducts,
 }) {
+  const handleDeleteProduct = (indexToDelete) => {
+    setProducts(products.filter((_, index) => index !== indexToDelete));
+  };
+
   return (
     <main className="flex-grow bg-slate-950">
       <div className="max-w-7xl mx-auto px-4 py-12">
@@ -40,7 +45,7 @@ function MainContent({
             />
           )}
 
-          <ProductList products={products} />
+          <ProductList products={products} onDeleteProduct={handleDeleteProduct} />
         </div>
       </div>
     </main>

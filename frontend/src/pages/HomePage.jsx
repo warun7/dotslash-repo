@@ -62,6 +62,7 @@ const HomePage = () => {
           image={image}
           isProcessing={isProcessing}
           products={products}
+          setProducts={setProducts}
         />
       </main>
       <Footer />

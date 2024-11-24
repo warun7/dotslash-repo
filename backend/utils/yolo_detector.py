@@ -36,10 +36,8 @@ class YOLOv11Detector:
         return image_dir
     
     def draw_boxes(self, image, detections):
-        """Draw bounding boxes on image"""
+        """Draw bounding boxes and confidence scores on image"""
         img = np.array(image)
-
-        # Get detections
         boxes = detections.boxes.data.cpu().numpy()
 
         for box in boxes:
@@ -56,25 +54,25 @@ class YOLOv11Detector:
 
         return Image.fromarray(img)
 
-    # def crop_detections(self, image, detections, output_dir, image_name):
-    #     """Crop and save detected products"""
-    #     saved_paths = []
+    def crop_detections(self, image, detections, output_dir, image_name):
+        """Crop and save detected products"""
+        saved_paths = []
 
-    #     # Get detections
-    #     boxes = detections.boxes.data.cpu().numpy()
+        # Get detections
+        boxes = detections.boxes.data.cpu().numpy()
 
-    #     for i, box in enumerate(boxes):
-    #         x1, y1, x2, y2 = map(int, box[:4])
+        for i, box in enumerate(boxes):
+            x1, y1, x2, y2 = map(int, box[:4])
 
-    #         # Crop detection
-    #         cropped = image.crop((x1, y1, x2, y2))
+            # Crop detection
+            cropped = image.crop((x1, y1, x2, y2))
 
-    #         # Save cropped image
-    #         save_path = os.path.join(output_dir, f"{image_name}_P_{i+1}.jpg")
-    #         cropped.save(save_path)
-    #         saved_paths.append(save_path)
+            # Save cropped image
+            save_path = os.path.join(output_dir, f"{image_name}_P_{i+1}.jpg")
+            cropped.save(save_path)
+            saved_paths.append(save_path)
 
-    #     return saved_paths
+        return saved_paths
     
     #  def filter_non_products(self, image_path, min_size=50, aspect_ratio_range=(0.5, 2.0)):
     #     """Filter out likely non-product images"""
@@ -110,22 +108,17 @@ class YOLOv11Detector:
             bb_path = os.path.join(output_dir, f"{image_name}_BB.jpg")
             bb_image.save(bb_path)
 
-            # Create results list
-            results = []
-            boxes = detections.boxes.data.cpu().numpy()
-            for box in boxes:
-                results.append({
-                    'name': 'Product',  # Generic name since we don't have classification yet
-                    'confidence': float(box[4])  # Convert numpy float to Python float
-                })
+            # Crop and save individual products
+            cropped_paths = self.crop_detections(image, detections, output_dir, image_name)
 
             print(f"Finished processing {image_name}")
-            print(f"Detected {len(results)} products")
+            print(f"Detected {len(cropped_paths)} products")
 
-            return results, bb_path  # Make sure we're returning both values
+            return bb_path, cropped_paths  # Return annotated image path and cropped paths
+
         except Exception as e:
             print(f"Error in process_image: {str(e)}")
-            raise  # Re-raise the exception to be caught by the route handler
+            raise
     def process_directory(self, input_dir):
         """Process all images in directory"""
         total_images = len([f for f in os.listdir(input_dir)
