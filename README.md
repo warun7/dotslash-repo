@@ -32,4 +32,5 @@ python app.py
 # Tech Used
 - For frontend reactjs with tailwind was used
 - The backend runs using flask to make requests to the model and the Gemini API
-- 
+  ![YOLO v11 stats](images/yolo11n.png)
+  
